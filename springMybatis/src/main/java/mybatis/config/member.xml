@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- sqlMapper 설정하기 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member">
+	<select id="findMemberById" parameterType="int" resultType="member">
+		<![CDATA[
+		SELECT 	ID, PASSWORD, NAME, ADDRESS
+		FROM 	MEMBER_NEW
+		WHERE 	ID = #{iiiiiiiiiiiiiii}
+		]]>
+	</select>
+	
+	<!-- list select -->
+	<select id="findMemberList" resultType="member">
+		SELECT 	ID, PASSWORD, NAME, ADDRESS
+		FROM 	MEMBER_NEW
+	</select>
+	
+	<select id="findMemberByAdd2" parameterType="String" resultType="member">
+		SELECT 	ID, PASSWORD, NAME, ADDRESS
+		FROM 	MEMBER_NEW
+		WHERE 	ADDRESS=#{address}
+	</select>
+	
+	<select id="findMemberByIdAndPass" parameterType="selectionconditions" resultType="member">
+		SELECT 	ID, PASSWORD, NAME, ADDRESS
+		FROM 	MEMBER_NEW
+		WHERE 	ID = #{id} AND PASSWORD = #{pass}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		<![CDATA[
+		INSERT INTO MEMBER_NEW(ID, PASSWORD, NAME, ADDRESS) VALUES (#{id}, #{password}, #{name}, #{address})
+		]]>
+	</insert>
+	
+	<!-- 만약 parameterType을 다른 경로의 것을 쓰고 싶으면 풀패스 경로 이름을 모두 표시해줘야함 -->
+	<update id="updateMenberById" parameterType="updatecondition">
+		<![CDATA[
+		UPDATE MEMBER_NEW 
+		SET ADDRESS =#{address}
+		WHERE ID =#{id}
+		]]>
+	</update>
+</mapper>
